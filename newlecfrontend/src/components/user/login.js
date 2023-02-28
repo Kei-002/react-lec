@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { login, clearErrors } from "../../actions/userActions";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
   const [email, setEmail] = useState("");
 
@@ -20,6 +23,11 @@ const Login = () => {
   let navigate = useNavigate();
 
   let location = useLocation();
+
+  const notify = (error = "") =>
+    toast.error(error, {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
@@ -35,7 +43,7 @@ const Login = () => {
     } else if (isAuthenticated) navigate("/");
 
     if (error) {
-      alert.error(error);
+      notify(error);
 
       dispatch(clearErrors());
     }
