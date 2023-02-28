@@ -11,6 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../../actions/userActions";
 
 import { toast } from "react-toastify";
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/main
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
@@ -34,6 +38,18 @@ const Login = () => {
   const { isAuthenticated, error, loading } = useSelector(
     (state) => state.auth
   );
+
+  const notify = (message = "") =>
+    toast.error(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
 
   useEffect(() => {
     if (isAuthenticated && redirect === "shipping") {

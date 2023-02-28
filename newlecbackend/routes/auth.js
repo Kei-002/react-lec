@@ -3,7 +3,13 @@ const express = require("express");
 const router = express.Router();
 
 const getProducts = require("../models/product");
+<<<<<<< HEAD
 const upload = require("../utils/multer");
+=======
+
+const upload = require("../utils/multer");
+
+>>>>>>> refs/remotes/origin/main
 const {
   registerUser,
 
@@ -55,7 +61,10 @@ router.put("/password/update", isAuthenticatedUser, updatePassword);
 
 router.get("/me", isAuthenticatedUser, getUserProfile);
 
+<<<<<<< HEAD
 // router.post("/register", registerUser);
+=======
+>>>>>>> refs/remotes/origin/main
 router.post("/register", upload.single("avatar"), registerUser);
 
 router.post("/login", loginUser);

@@ -11,23 +11,45 @@ const cloudinary = require("cloudinary");
 const crypto = require("crypto");
 
 exports.registerUser = async (req, res, next) => {
-  const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "avatars",
-    width: 150,
-    crop: "scale",
-  });
-  const { name, email, password } = req.body;
+  const result = await cloudinary.v2.uploader.upload(
+    req.body.avatar,
+    {
+      folder: "avatars",
+
+      width: 150,
+
+      crop: "scale",
+    },
+    (err, res) => {
+      console.log(err, res);
+    }
+  );
+
+  // return console.log(result)
+
+  const {
+    name,
+
+    email,
+
+    password,
+  } = req.body;
 
   const user = await User.create({
     name,
+
     email,
+
     password,
+
     avatar: {
       public_id: result.public_id,
+
       url: result.secure_url,
     },
   });
 
+<<<<<<< HEAD
   //test token
 
   // const token = user.getJwtToken();
@@ -38,6 +60,8 @@ exports.registerUser = async (req, res, next) => {
   //   token,
   // });
 
+=======
+>>>>>>> refs/remotes/origin/main
   sendToken(user, 200, res);
 };
 
